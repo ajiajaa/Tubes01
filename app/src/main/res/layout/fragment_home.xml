@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_rs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RS Cepat Kembali"
+        android:textSize="50dp"
+        android:padding="50dp"
+        android:gravity="center"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_app_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        android:layout_below="@+id/tv_rs"
+        android:layout_above="@+id/lay_But_buat_pert"
+        android:textSize="40dp"/>
+
+    <RelativeLayout
+        android:id="@+id/lay_But_buat_pert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="50dp">
+
+        <Button
+            android:id="@+id/btn_buat_pertemuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buat Pertemuan"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

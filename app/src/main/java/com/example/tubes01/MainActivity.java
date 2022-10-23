@@ -16,8 +16,8 @@ import com.example.tubes01.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     FragmentHome fragHome;
-    FragmentPertemuan fragPertemuan;
     FragmentDokter fragDokter;
+    FragmentPertemuan fragPertemuan;
     FragmentDrawer drawer;
     DrawerLayout dl;
     FragmentManager fm;
@@ -59,32 +59,76 @@ public class MainActivity extends AppCompatActivity {
     public void changePage(int page){
         FragmentTransaction ft = this.fm.beginTransaction();
         if(page==1){
-            System.out.println("Change p1");
+            System.out.println("pageHome in");
+
             if(this.fragHome.isAdded()){
                 ft.show(this.fragHome);
             }else{
                 ft.add(R.id.fragment_container,this.fragHome);
             }
+
+            if(this.fragDokter.isAdded()){
+                System.out.println("pageDokterHide in");
+
+                ft.hide(this.fragDokter);
+            }
+
             if(this.fragPertemuan.isAdded()){
+                System.out.println("pagePertemuanHide in");
+
                 ft.hide(this.fragPertemuan);
             }
         }else if(page==2){
-            System.out.println("Change p2");
+            System.out.println("pageDokter in");
+
+            if(this.fragDokter.isAdded()){
+                ft.show(this.fragDokter);
+            }else{
+                ft.add(R.id.fragment_container,this.fragDokter);
+            }
+
+            if(this.fragHome.isAdded()){
+                System.out.println("pageHomeHide in");
+
+                ft.hide(this.fragHome);
+            }
+
+            if(this.fragPertemuan.isAdded()){
+                System.out.println("pagePertemuanHide in");
+
+                ft.hide(this.fragPertemuan);
+            }
+        }else if(page==3){
+            System.out.println("pagePertemuan in");
+
             if(this.fragPertemuan.isAdded()){
                 ft.show(this.fragPertemuan);
             }else{
                 ft.add(R.id.fragment_container,this.fragPertemuan);
             }
+
             if(this.fragHome.isAdded()){
+                System.out.println("pageHomeHide in");
+
                 ft.hide(this.fragHome);
             }
+
+            if(this.fragDokter.isAdded()){
+                System.out.println("pageDokterHide in");
+
+                ft.hide(this.fragDokter);
+            }
+        }else if(page==4){
+            closeApplication();
         }
         ft.commit();
     }
+
     public void closeApplication(){
         this.moveTaskToBack(true);
         this.finish();
     }
+
     public void close(){
         this.binding.drawerLayout.closeDrawers();
     }

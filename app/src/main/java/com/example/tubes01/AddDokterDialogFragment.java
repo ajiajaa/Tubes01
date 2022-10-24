@@ -12,11 +12,9 @@ import android.widget.ListView;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tubes01.databinding.DialogFragmentAddDokterBinding;
-import com.example.tubes01.databinding.FragmentDokterBinding;
 
 public class AddDokterDialogFragment extends DialogFragment implements View.OnClickListener{
     DialogFragmentAddDokterBinding binding;
-    ListView lvDokter;
 
     public static AddDokterDialogFragment newInstance(){
         AddDokterDialogFragment fragment = new AddDokterDialogFragment();

@@ -1,9 +1,12 @@
 package com.example.tubes01;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ListView;
 
 import androidx.fragment.app.DialogFragment;
@@ -26,7 +29,10 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = DialogFragmentAddDokterBinding.inflate(inflater,container,false);
         this.binding.btnAddDokter.setOnClickListener(this);
-
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }
         return binding.getRoot();
     }
 
@@ -36,12 +42,9 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
         if(view==this.binding.btnAddDokter){
             Bundle result = new Bundle();
             result.putString("dokter",this.binding.etDokterName.getText().toString());
+            result.putString("spesialisasi",this.binding.etSpesialisasi.getText().toString());
             this.getParentFragmentManager().setFragmentResult("DokterInfo",result);
             this.binding.etDokterName.setText("");
-
-            Bundle result2 = new Bundle();
-            result2.putString("spesialisasi",this.binding.etSpesialisasi.getText().toString());
-            this.getParentFragmentManager().setFragmentResult("DokterInfo",result2);
             this.binding.etSpesialisasi.setText("");
             this.dismiss();
         }

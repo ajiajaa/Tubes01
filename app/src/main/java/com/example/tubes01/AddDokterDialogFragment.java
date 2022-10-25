@@ -1,5 +1,6 @@
 package com.example.tubes01;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -7,11 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tubes01.databinding.DialogFragmentAddDokterBinding;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class AddDokterDialogFragment extends DialogFragment implements View.OnClickListener{
     DialogFragmentAddDokterBinding binding;
@@ -42,6 +51,33 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
             result.putString("dokter",this.binding.etDokterName.getText().toString());
             result.putString("spesialisasi",this.binding.etSpesialisasi.getText().toString());
             this.getParentFragmentManager().setFragmentResult("DokterInfo",result);
+            File file;
+            FileOutputStream fos= null;
+            try {
+                file= new File("/data/data/com.example.tubes01/dataDokter.txt");
+                fos= new FileOutputStream(file, true);
+                FileWriter writer= new FileWriter(file, true);
+                if(!file.exists()){
+                    file.createNewFile();
+                }
+                writer.append(this.binding.etDokterName.getText()+" ");
+                writer.append(this.binding.etSpesialisasi.getText()+"\n");
+                writer.flush();
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if(fos!= null){
+                        fos.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             this.binding.etDokterName.setText("");
             this.binding.etSpesialisasi.setText("");
             this.dismiss();

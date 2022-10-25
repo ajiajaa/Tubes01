@@ -44,7 +44,16 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
 
         return binding.getRoot();
     }
+    @Override
+    public void onPause(){
+        super.onPause();
 
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+
+    }
     @Override
     public void onClick(View view) {
         if(view==binding.btnAddDokter){

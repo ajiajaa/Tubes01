@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
         fragHome = FragmentHome.newInstance("fragment home");
-        fragPertemuan = FragmentPertemuan.newInstance("fragment home");
-        fragDokter = FragmentDokter.newInstance("fragment home");
+        fragPertemuan = FragmentPertemuan.newInstance("fragment pertemuan");
+        fragDokter = FragmentDokter.newInstance("fragment dokter");
 
         this.toolbar = binding.toolbar;
         this.dl = binding.drawerLayout;

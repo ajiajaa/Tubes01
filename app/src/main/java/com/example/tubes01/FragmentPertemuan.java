@@ -52,6 +52,15 @@ public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDa
         dpd.show();
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view==binding.ivCalender){
+            showDatePicker();
+        }else if(view==binding.ivWaktu){
+            showTimePicker();
+        }
+    }
+
     private void showTimePicker(){
         TimePickerDialog.OnTimeSetListener timeListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -62,9 +71,7 @@ public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDa
             }
         };
 
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePicker = new TimePickerDialog(this.getContext(),style, timeListener, hour,minute,true);
+        TimePickerDialog timePicker = new TimePickerDialog(this.getContext(),AlertDialog.THEME_HOLO_DARK, timeListener, hour,minute,true);
 
         timePicker.setTitle("Pilih Waktu Temu");
         timePicker.show();
@@ -73,14 +80,5 @@ public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDa
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
         binding.tvTanggalOut.setText(dayOfMonth+"/"+(month+1)+"/"+year);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if(view==binding.ivCalender){
-            showDatePicker();
-        }else if(view==binding.ivWaktu){
-            showTimePicker();
-        }
     }
 }

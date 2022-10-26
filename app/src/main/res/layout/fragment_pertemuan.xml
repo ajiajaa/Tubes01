@@ -19,7 +19,8 @@
     <RelativeLayout
         android:id="@+id/lay_nama"
         android:layout_below="@+id/judul"
-        android:paddingBottom="40dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -44,7 +45,8 @@
     <RelativeLayout
         android:id="@+id/lay_Dokter"
         android:layout_below="@+id/lay_nama"
-        android:paddingBottom="40dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -70,7 +72,8 @@
     <RelativeLayout
         android:id="@+id/lay_keluhan"
         android:layout_below="@+id/lay_Dokter"
-        android:paddingBottom="40dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -94,7 +97,8 @@
     <RelativeLayout
         android:id="@+id/lay_tanggal"
         android:layout_below="@+id/lay_keluhan"
-        android:paddingBottom="40dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -105,7 +109,8 @@
             android:text="Tangal"
             android:textSize="25dp"
             android:padding="10dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/tv_tanggal_out"
@@ -116,20 +121,23 @@
             android:gravity="center"
             android:layout_toRightOf="@id/tv_tanggal"
             android:layout_toLeftOf="@id/iv_calender"
-            android:hint="dd/mm/yyy"/>
+            android:hint="dd/mm/yyy"
+            android:layout_centerVertical="true"/>
 
         <ImageView
             android:id="@+id/iv_calender"
             android:layout_alignParentRight="true"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_calendar_icon_3"/>
+            android:src="@drawable/ic_calendar_icon_3"
+            android:layout_centerVertical="true"/>
      </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/lay_waktu"
         android:layout_below="@+id/lay_tanggal"
-        android:paddingBottom="40dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -140,7 +148,8 @@
             android:text="Waktu"
             android:textSize="25dp"
             android:padding="10dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/tv_waktu_out"
             android:layout_width="wrap_content"
@@ -150,14 +159,16 @@
             android:gravity="center"
             android:layout_toRightOf="@id/tv_waktu"
             android:layout_toLeftOf="@id/iv_waktu"
-            android:hint="hh/mm"/>
+            android:hint="hh/mm"
+            android:layout_centerVertical="true"/>
 
         <ImageView
             android:id="@+id/iv_waktu"
             android:layout_alignParentRight="true"
             android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_clock_icon_1"/>
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clock_icon_1"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
     <Button

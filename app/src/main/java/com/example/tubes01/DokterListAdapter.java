@@ -65,7 +65,7 @@ public class DokterListAdapter extends BaseAdapter {
     private class ViewHolder{
 
         public  void updateView(Dokter dokter){
-            binding.tvDokterOut.setText(dokter.getNama());
+            binding.tvDokterOut.setText("Dr."+dokter.getNama());
             binding.tvSpesialisasiOut.setText((dokter.getSpesialis()));
             binding.tvNoHpOut.setText(dokter.getNoHp());
         }

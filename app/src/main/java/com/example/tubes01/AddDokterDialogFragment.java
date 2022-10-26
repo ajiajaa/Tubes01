@@ -47,43 +47,48 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
     @Override
     public void onClick(View view) {
         if(view==this.binding.btnAddDokter){
-            Bundle result = new Bundle();
-            result.putString("dokter",this.binding.etDokterName.getText().toString());
-            result.putString("spesialisasi",this.binding.etSpesialisasi.getText().toString());
-            result.putString("noHp",this.binding.etNoHp.getText().toString());
-            this.getParentFragmentManager().setFragmentResult("DokterInfo",result);
+            if("".equals(this.binding.etDokterName.getText().toString()) || "".equals(this.binding.etSpesialisasi.getText().toString()) || "".equals(this.binding.etNoHp.getText().toString())){
+                Toast.makeText(getActivity(), "Silahkan Masukan Seluruh Data Dokter Yang Diperlukan !",
+                        Toast.LENGTH_LONG).show();
+            }else{
+                Bundle result = new Bundle();
+                result.putString("dokter",this.binding.etDokterName.getText().toString());
+                result.putString("spesialisasi",this.binding.etSpesialisasi.getText().toString());
+                result.putString("noHp",this.binding.etNoHp.getText().toString());
+                this.getParentFragmentManager().setFragmentResult("DokterInfo",result);
 
-            File file;
-            FileOutputStream fos= null;
-            try {
-                file= new File("/data/data/com.example.tubes01/dataDokter.txt");
-                fos= new FileOutputStream(file, true);
-                FileWriter writer= new FileWriter(file, true);
-                if(!file.exists()){
-                    file.createNewFile();
-                }
-                writer.append(this.binding.etDokterName.getText()+" ");
-                writer.append(this.binding.etSpesialisasi.getText()+"\n");
-                writer.flush();
-                writer.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
+                File file;
+                FileOutputStream fos= null;
                 try {
-                    if(fos!= null){
-                        fos.close();
+                    file= new File("/data/data/com.example.tubes01/dataDokter.txt");
+                    fos= new FileOutputStream(file, true);
+                    FileWriter writer= new FileWriter(file, true);
+                    if(!file.exists()){
+                        file.createNewFile();
                     }
+                    writer.append(this.binding.etDokterName.getText()+" ");
+                    writer.append(this.binding.etSpesialisasi.getText()+"\n");
+                    writer.flush();
+                    writer.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        if(fos!= null){
+                            fos.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            this.binding.etDokterName.setText("");
-            this.binding.etSpesialisasi.setText("");
-            this.binding.etNoHp.setText("");
-            this.dismiss();
+                this.binding.etDokterName.setText("");
+                this.binding.etSpesialisasi.setText("");
+                this.binding.etNoHp.setText("");
+                this.dismiss();
+            }
         }
     }
 }

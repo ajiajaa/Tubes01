@@ -111,19 +111,19 @@
             android:id="@+id/tv_tanggal_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:padding="10dp"
             android:gravity="center"
             android:layout_toRightOf="@id/tv_tanggal"
             android:layout_toLeftOf="@id/iv_calender"
-            android:hint="tanggal here"/>
+            android:hint="dd/mm/yyy"/>
 
         <ImageView
             android:id="@+id/iv_calender"
             android:layout_alignParentRight="true"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_calender_icon_2"/>
+            android:src="@drawable/ic_calendar_icon_3"/>
      </RelativeLayout>
 
     <RelativeLayout
@@ -145,19 +145,19 @@
             android:id="@+id/tv_waktu_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:padding="10dp"
             android:gravity="center"
             android:layout_toRightOf="@id/tv_waktu"
             android:layout_toLeftOf="@id/iv_waktu"
-            android:hint="tanggal here"/>
+            android:hint="hh/mm"/>
 
         <ImageView
             android:id="@+id/iv_waktu"
             android:layout_alignParentRight="true"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_calender_icon_2"/>
+            android:src="@drawable/ic_clock_icon_1"/>
     </RelativeLayout>
 
     <Button

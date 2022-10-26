@@ -10,18 +10,16 @@
         android:id="@+id/judul"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="25sp"
+        android:textSize="45dp"
         android:padding="10dp">
     </TextView>
-    <FrameLayout
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/judul">
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_dokter"/>
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/judul"
+        android:id="@+id/lv_dokter"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add_dokter"

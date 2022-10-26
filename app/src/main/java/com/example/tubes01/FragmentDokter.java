@@ -37,7 +37,7 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
                 "DokterInfo", this, new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        Dokter dokter = new Dokter(result.getString("dokter"),result.getString("spesialisasi"));
+                        Dokter dokter = new Dokter(result.getString("dokter"),result.getString("spesialisasi"),result.getString("noHp"));
                         adapter.addLine(dokter);
                     }
                 });

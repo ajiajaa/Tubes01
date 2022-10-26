@@ -27,12 +27,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <EditText
+            android:id="@+id/et_no_hp"
+            android:inputType="phone"
+            android:layout_toLeftOf="@id/btn_add_dokter"
+            android:hint="no hp"
+            android:layout_below="@id/et_spesialisasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/btn_add_dokter"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/et_spesialisasi"
+            android:layout_below="@id/et_no_hp"
             android:text="add"/>
 
     </RelativeLayout>

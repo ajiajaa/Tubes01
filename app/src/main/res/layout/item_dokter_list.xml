@@ -5,43 +5,49 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="85dp"
-        android:text="Nama Dokter"
-        android:id="@+id/tv_nama"></TextView>
+        android:width="95dp"
+        android:text="Nama Dokter :"
+        android:id="@+id/tv_dokter"/>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_dokter_out"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=": "
-        android:id="@+id/tv_titik2"
-        android:layout_toRightOf="@id/tv_nama"></TextView>
-    <TextView
-        android:id="@+id/tv_dokter_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_titik2"
+        android:layout_toRightOf="@id/tv_dokter"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="85dp"
-        android:text="Spesialisasi"
-        android:id="@+id/tv_spesialis"
-        android:layout_below="@id/tv_nama"></TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=": "
-        android:id="@+id/tv_titik21"
-        android:layout_toRightOf="@id/tv_spesialis"
-        android:layout_below="@id/tv_nama"></TextView>
-    <TextView
+        android:width="95dp"
+        android:text="Spesialisasi :"
         android:id="@+id/tv_spesialisasi"
+        android:layout_below="@id/tv_dokter"/>
+
+    <TextView
+        android:id="@+id/tv_spesialisasi_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_spesialisasi"
+        android:layout_below="@id/tv_dokter"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_titik21"
-        android:layout_below="@id/tv_nama"/>
+        android:width="95dp"
+        android:text="no telp :"
+        android:id="@+id/tv_no_hp"
+        android:layout_below="@id/tv_spesialisasi"/>
+
+    <TextView
+        android:id="@+id/tv_no_hp_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_no_hp"
+        android:layout_below="@id/tv_spesialisasi"/>
 
 </RelativeLayout>

@@ -50,7 +50,9 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
             Bundle result = new Bundle();
             result.putString("dokter",this.binding.etDokterName.getText().toString());
             result.putString("spesialisasi",this.binding.etSpesialisasi.getText().toString());
+            result.putString("noHp",this.binding.etNoHp.getText().toString());
             this.getParentFragmentManager().setFragmentResult("DokterInfo",result);
+
             File file;
             FileOutputStream fos= null;
             try {
@@ -80,6 +82,7 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
 
             this.binding.etDokterName.setText("");
             this.binding.etSpesialisasi.setText("");
+            this.binding.etNoHp.setText("");
             this.dismiss();
         }
     }

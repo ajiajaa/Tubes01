@@ -51,31 +51,24 @@ public class DokterListAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if(convertView==null){
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            binding = ItemDokterListBinding.inflate(inflater);
-            viewHolder = new ViewHolder(i);
-            viewHolder.view = binding.getRoot();
-            viewHolder.view.setTag(viewHolder);
+            binding = ItemDokterListBinding.inflate(LayoutInflater.from(parent.getContext()));
+            viewHolder = new ViewHolder();
+            convertView = binding.getRoot();
+            convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
         viewHolder.updateView(this.getItem(i));
-        return viewHolder.view;
+        return convertView;
     }
 
     private class ViewHolder{
-        View view;
-        int i;
-
-        public ViewHolder(int i){
-            this.view = binding.getRoot();
-            this.i = i;
-        }
 
         public  void updateView(Dokter dokter){
-            binding.tvDokterName.setText(dokter.getNama());
-            binding.tvSpesialisasi.setText((dokter.getSpesialis()));
+            binding.tvDokterOut.setText(dokter.getNama());
+            binding.tvSpesialisasiOut.setText((dokter.getSpesialis()));
+            binding.tvNoHpOut.setText(dokter.getNoHp());
         }
+
     }
 }

@@ -11,6 +11,8 @@ import com.example.tubes01.databinding.FragmentHomeBinding;
 import com.example.tubes01.databinding.FragmentPertemuanBinding;
 
 public class FragmentPertemuan extends Fragment {
+    FragmentPertemuanBinding binding;
+
     public static FragmentPertemuan newInstance(String title){
         FragmentPertemuan fragment = new FragmentPertemuan();
         Bundle args = new Bundle();
@@ -21,7 +23,10 @@ public class FragmentPertemuan extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = FragmentPertemuanBinding.inflate(inflater,container,false).getRoot();
-        return view;
+        this.binding = FragmentPertemuanBinding.inflate(inflater,container,false);
+
+
+
+        return binding.getRoot();
     }
 }

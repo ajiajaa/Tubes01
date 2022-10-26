@@ -14,9 +14,6 @@ import com.example.tubes01.databinding.FragmentHomeBinding;
 
 public class FragmentHome extends Fragment implements View.OnClickListener{
     FragmentHomeBinding binding;
-    TextView tvRs;
-    TextView tvAppDesc;
-    Button btnBuatPertemuan;
 
     public static FragmentHome newInstance(String title){
         FragmentHome fragment = new FragmentHome();
@@ -30,11 +27,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = FragmentHomeBinding.inflate(inflater,container,false);
 
-        tvRs = binding.tvRs;
-        tvAppDesc = binding.tvAppDesc;
-        btnBuatPertemuan = binding.btnBuatPertemuan;
-
-        btnBuatPertemuan.setOnClickListener(this);
+        binding.btnBuatPertemuan.setOnClickListener(this);
 
         return binding.getRoot();
     }
@@ -43,7 +36,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         if (view==binding.btnBuatPertemuan){
             Bundle result = new Bundle();
-            result.putInt("page",2);
+            result.putInt("page",3);
             this.getParentFragmentManager().setFragmentResult("changePage",result);
         }
     }

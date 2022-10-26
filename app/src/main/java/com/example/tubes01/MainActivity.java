@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         fragPertemuan = FragmentPertemuan.newInstance("fragment pertemuan");
         fragDokter = FragmentDokter.newInstance("fragment dokter");
 
+
         this.toolbar = binding.toolbar;
         this.dl = binding.drawerLayout;
         this.setSupportActionBar(toolbar);

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DokterListAdapter extends BaseAdapter {
     private Activity activity;
-    private List<Dokter> dokterList;
+    public List<Dokter> dokterList;
     private ItemDokterListBinding binding;
 
     public DokterListAdapter(Activity activity){

@@ -39,6 +39,7 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         Dokter dokter = new Dokter(result.getString("dokter"),result.getString("spesialisasi"),result.getString("noHp"));
                         adapter.addLine(dokter);
+                        sendDokterNames();
                     }
                 });
 
@@ -58,6 +59,18 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         if(view==binding.btnAddDokter){
             showDialog();
+        }
+    }
+
+    public void sendDokterNames(){
+        Bundle result = new Bundle();
+
+        int n = adapter.dokterList.size();
+        int i = 0;
+        while (i<n){
+            result.putString("dokter",adapter.dokterList.get(i).getNama());
+            this.getParentFragmentManager().setFragmentResult("DokterNames",result);
+            i++;
         }
     }
 

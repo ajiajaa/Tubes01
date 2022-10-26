@@ -7,19 +7,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import com.example.tubes01.databinding.FragmentHomeBinding;
 import com.example.tubes01.databinding.FragmentPertemuanBinding;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDateSetListener,View.OnClickListener {
     FragmentPertemuanBinding binding;
+    List<String> dokter;
     int hour = 0;
     int minute = 0;
 
@@ -34,10 +40,21 @@ public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = FragmentPertemuanBinding.inflate(inflater,container,false);
+        this.dokter = new ArrayList<String>();
 
         binding.ivCalender.setOnClickListener(this);
         binding.ivWaktu.setOnClickListener(this);
 
+        this.getParentFragmentManager().setFragmentResultListener(
+                "DokterNames", this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        dokter.add(result.getString("dokter"));
+                    }
+                });
+        String[] test = {"1","2","3"};
+        binding.dropDokter.setAdapter(new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_dropdown_item,dokter));
+        //dokter.toArray(new String[dokter.size()]))
         return binding.getRoot();
     }
 

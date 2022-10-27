@@ -16,7 +16,6 @@ import com.example.tubes01.databinding.FragmentDokterBinding;
 public class FragmentDokter extends Fragment implements View.OnClickListener{
     FragmentDokterBinding binding;
     DokterListAdapter adapter;
-    private AddDokterDialogFragment dialogFragment;
 
     public static FragmentDokter newInstance(String title){
         FragmentDokter fragment = new FragmentDokter();
@@ -31,6 +30,7 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
         this.binding = FragmentDokterBinding.inflate(inflater,container,false);
         this.adapter = new DokterListAdapter(getActivity());
         binding.lvDokter.setAdapter(adapter);
+
         binding.btnAddDokter.setOnClickListener(this);
 
         this.getParentFragmentManager().setFragmentResultListener(
@@ -39,7 +39,7 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         Dokter dokter = new Dokter(result.getString("dokter"),result.getString("spesialisasi"),result.getString("noHp"));
                         adapter.addLine(dokter);
-                        sendDokterNames();
+                        sendDokterNames(result.getString("dokter"));
                     }
                 });
 
@@ -62,16 +62,10 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
         }
     }
 
-    public void sendDokterNames(){
+    public void sendDokterNames(String dokter){
         Bundle result = new Bundle();
-
-        int n = adapter.dokterList.size();
-        int i = 0;
-        while (i<n){
-            result.putString("dokter",adapter.dokterList.get(i).getNama());
-            this.getParentFragmentManager().setFragmentResult("DokterNames",result);
-            i++;
-        }
+        result.putString("dokter",dokter);
+        this.getParentFragmentManager().setFragmentResult("DokterNames",result);
     }
 
     public void showDialog(){

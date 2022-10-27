@@ -13,6 +13,7 @@ import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
 import com.example.tubes01.databinding.FragmentHomeBinding;
@@ -23,11 +24,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDateSetListener,View.OnClickListener {
+public class FragmentPertemuan extends Fragment implements View.OnClickListener {
     FragmentPertemuanBinding binding;
-    List<String> dokter;
-    int hour = 0;
-    int minute = 0;
+    PertemuanListAdapter adapter;
 
     public static FragmentPertemuan newInstance(String title){
         FragmentPertemuan fragment = new FragmentPertemuan();
@@ -40,62 +39,24 @@ public class FragmentPertemuan extends Fragment implements DatePickerDialog.OnDa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = FragmentPertemuanBinding.inflate(inflater,container,false);
-        this.dokter = new ArrayList<String>();
+        this.adapter = new PertemuanListAdapter(getActivity());
+        binding.lvPertemuan.setAdapter(adapter);
 
-        binding.ivCalender.setOnClickListener(this);
-        binding.ivWaktu.setOnClickListener(this);
+        binding.btnAddPertemuan.setOnClickListener(this);
 
-        this.getParentFragmentManager().setFragmentResultListener(
-                "DokterNames", this, new FragmentResultListener() {
-                    @Override
-                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        dokter.add(result.getString("dokter"));
-                    }
-                });
-        String[] test = {"1","2","3"};
-        binding.dropDokter.setAdapter(new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_dropdown_item,dokter));
-        //dokter.toArray(new String[dokter.size()]))
         return binding.getRoot();
-    }
-
-    private void showDatePicker(){
-        DatePickerDialog dpd = new DatePickerDialog(
-                this.getContext(),
-                this,
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        );
-        dpd.show();
     }
 
     @Override
     public void onClick(View view) {
-        if(view==binding.ivCalender){
-            showDatePicker();
-        }else if(view==binding.ivWaktu){
-            showTimePicker();
+        if(view==binding.btnAddPertemuan){
+            showDialog();
         }
     }
 
-    private void showTimePicker(){
-        TimePickerDialog.OnTimeSetListener timeListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hourSelect, int minuteSelect) {
-                hour = hourSelect;
-                minute = minuteSelect;
-                binding.tvWaktuOut.setText(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
-            }
-        };
-
-        TimePickerDialog timePicker = new TimePickerDialog(this.getContext(),AlertDialog.THEME_HOLO_DARK, timeListener, hour,minute,true);
-
-        timePicker.setTitle("Pilih Waktu Temu");
-        timePicker.show();
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        binding.tvTanggalOut.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+    public void showDialog(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        AddPertemuanDialogFragment addPertFrag = AddPertemuanDialogFragment.newInstance();
+        addPertFrag.show(fm, "fragment_add_pertemuan");
     }
 }

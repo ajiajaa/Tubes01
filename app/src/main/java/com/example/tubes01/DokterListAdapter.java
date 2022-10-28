@@ -16,9 +16,9 @@ public class DokterListAdapter extends BaseAdapter {
     public List<Dokter> dokterList;
     private ItemDokterListBinding binding;
 
-    public DokterListAdapter(Activity activity){
+    public DokterListAdapter(Activity activity, List<Dokter> dokter){
         this.activity = activity;
-        this.dokterList = new ArrayList<Dokter>();
+        this.dokterList = dokter;
     }
 
     public void addLine(Dokter food){
@@ -27,7 +27,6 @@ public class DokterListAdapter extends BaseAdapter {
     }
 
     public void removeLine(int i){
-        dokterList.remove(i);
         notifyDataSetChanged();
     }
 
@@ -49,7 +48,6 @@ public class DokterListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-
         if(convertView==null){
             binding = ItemDokterListBinding.inflate(LayoutInflater.from(parent.getContext()));
             viewHolder = new ViewHolder();

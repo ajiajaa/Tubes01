@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.example.tubes01.databinding.ItemDokterListBinding;
 import com.example.tubes01.databinding.ItemListPertemuanBinding;
 
 import java.util.ArrayList;
@@ -14,32 +13,32 @@ import java.util.List;
 
 public class PertemuanListAdapter extends BaseAdapter {
     private Activity activity;
-    public List<Dokter> dokterList;
+    public List<Pertemuan> pertemuanList;
     private ItemListPertemuanBinding binding;
 
     public PertemuanListAdapter(Activity activity){
         this.activity = activity;
-        this.dokterList = new ArrayList<Dokter>();
+        this.pertemuanList = new ArrayList<Pertemuan>();
     }
 
-    public void addLine(Dokter food){
-        dokterList.add(food);
+    public void addLine(Pertemuan food){
+        pertemuanList.add(food);
         notifyDataSetChanged();
     }
 
     public void removeLine(int i){
-        dokterList.remove(i);
+        pertemuanList.remove(i);
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return dokterList.size();
+        return pertemuanList.size();
     }
 
     @Override
-    public Dokter getItem(int i) {
-        return dokterList.get(i);
+    public Pertemuan getItem(int i) {
+        return pertemuanList.get(i);
     }
 
     @Override
@@ -65,7 +64,7 @@ public class PertemuanListAdapter extends BaseAdapter {
 
     private class ViewHolder{
 
-        public  void updateView(Dokter dokter){
+        public  void updateView(Pertemuan pertemuan){
         }
 
     }

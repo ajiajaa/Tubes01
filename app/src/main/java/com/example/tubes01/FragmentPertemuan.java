@@ -42,6 +42,15 @@ public class FragmentPertemuan extends Fragment implements View.OnClickListener 
         this.adapter = new PertemuanListAdapter(getActivity());
         binding.lvPertemuan.setAdapter(adapter);
 
+        this.getParentFragmentManager().setFragmentResultListener(
+                "PertemuanInfo", this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        adapter.addLine(result.getString("pasien"),"",result.getString("keluhan"),result.getString("tanggal"),result.getString("waktu"));
+                    }
+
+                });
+
         binding.btnAddPertemuan.setOnClickListener(this);
 
         return binding.getRoot();

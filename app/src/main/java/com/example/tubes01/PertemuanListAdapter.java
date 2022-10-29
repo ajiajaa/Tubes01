@@ -21,8 +21,9 @@ public class PertemuanListAdapter extends BaseAdapter {
         this.pertemuanList = new ArrayList<Pertemuan>();
     }
 
-    public void addLine(Pertemuan food){
-        pertemuanList.add(food);
+    public void addLine(String nama, String dokter, String keluhan, String tanggal, String waktu){
+        Pertemuan pertemuan  = new Pertemuan(nama,dokter,keluhan,tanggal,waktu);
+        pertemuanList.add(pertemuan);
         notifyDataSetChanged();
     }
 
@@ -65,6 +66,9 @@ public class PertemuanListAdapter extends BaseAdapter {
     private class ViewHolder{
 
         public  void updateView(Pertemuan pertemuan){
+            binding.tvPasienOut.setText(pertemuan.getPasien());
+            binding.tvKendalaOut.setText(pertemuan.getKeluhan());
+            binding.tvWaktuOut.setText(pertemuan.getTanggal()+" ("+pertemuan.getWaktu()+")");
         }
 
     }

@@ -31,6 +31,7 @@ public class AddPertemuanDialogFragment extends DialogFragment implements DatePi
     int minute = 0;
 
     public static AddPertemuanDialogFragment newInstance(){
+
         AddPertemuanDialogFragment fragment = new AddPertemuanDialogFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -54,6 +55,8 @@ public class AddPertemuanDialogFragment extends DialogFragment implements DatePi
                 });
 
         binding.dropDokter.setAdapter(new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_dropdown_item,dokter));
+
+        this.binding.btnAddPertemuan.setOnClickListener(this);
 
         return binding.getRoot();
     }
@@ -92,6 +95,13 @@ public class AddPertemuanDialogFragment extends DialogFragment implements DatePi
         }else if(view==binding.ivWaktu){
             showTimePicker();
         }else if(view==binding.btnAddPertemuan){
+            Bundle result = new Bundle();
+            result.putString("pasien",this.binding.etNama.getText().toString());
+            result.putString("keluhan",this.binding.etKeluhan.getText().toString());
+            result.putString("tanggal",this.binding.tvTanggalOut.getText().toString());
+            result.putString("waktu",this.binding.tvWaktuOut.getText().toString());
+            this.getParentFragmentManager().setFragmentResult("PertemuanInfo",result);
+
             this.dismiss();
         }
     }

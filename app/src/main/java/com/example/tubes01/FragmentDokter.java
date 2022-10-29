@@ -41,7 +41,8 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
                 "DokterInfo", this, new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        Dokter dokter = new Dokter(result.getInt("idDokter"),result.getString("dokter"),result.getString("spesialisasi"),result.getString("noHp"));
+                        Dokter dokter = new Dokter(result.getInt("idDokter"),result.getString("dokter"),
+                                result.getString("spesialisasi"),result.getString("noHp"));
                         adapter.addLine(dokter);
 //                        sendDokterNames(result.getString("dokter"));
                     }
@@ -64,6 +65,7 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
 //                result.putInt(Dokter.DOKTER_EDIT_EXTRA, -1);
 //                getParentFragmentManager().setFragmentResult("idDokter", result);
                 Dokter selectedDokter = (Dokter) binding.lvDokter.getItemAtPosition(position);
+                System.out.println(selectedDokter);
                 Intent editDokterIntent = new Intent(getActivity(), AddDokter.class);
                 editDokterIntent.putExtra(Dokter.DOKTER_EDIT_EXTRA, selectedDokter.getId());
                 startActivity(editDokterIntent);
@@ -83,6 +85,8 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
         super.onResume();
         this.adapter = new DokterListAdapter(getActivity(), Dokter.nonDeletedNotes());
         binding.lvDokter.setAdapter(adapter);
+        System.out.println("adapter load lagi1");
+
     }
     @Override
     public void onClick(View view) {

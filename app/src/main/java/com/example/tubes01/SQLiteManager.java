@@ -11,7 +11,9 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SQLiteManager extends SQLiteOpenHelper
 {
@@ -19,7 +21,7 @@ public class SQLiteManager extends SQLiteOpenHelper
 
     private static final String DATABASE_NAME = "DokterDB";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Dokter";
+    public static final String TABLE_NAME = "Dokter";
     private static final String TABLE_NAME1 = "Pertemuan";
     private static final String COUNTER = "Counter";
 
@@ -30,6 +32,7 @@ public class SQLiteManager extends SQLiteOpenHelper
     private static final String DELETED= "deleted";
 
     private static final String ID_PERTEMUAN = "idPertemuan";
+    private static final String PASIEN = "pasien";
     private static final String KELUHAN = "keluhan";
     private static final String TANGGAL= "tanggal";
     private static final String WAKTU= "waktu";
@@ -83,6 +86,10 @@ public class SQLiteManager extends SQLiteOpenHelper
                 .append(" INTEGER PRIMARY KEY AUTOINCREMENT, ")
                 .append(ID_PERTEMUAN)
                 .append(" INT, ")
+                .append(PASIEN)
+                .append(" TEXT, ")
+                .append(ID_DOKTER)
+                .append(" INT, ")
                 .append(KELUHAN)
                 .append(" TEXT, ")
                 .append(TANGGAL)
@@ -113,19 +120,20 @@ public class SQLiteManager extends SQLiteOpenHelper
         contentValues.put(DELETED, getStringFromDate(dokter.getDeleted()));
 
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
-    }public void addPertemuanToDatabase(Pertemuan pertemuan, Dokter dokter)
+    }
+    public void addPertemuanToDatabase(Pertemuan pertemuan)
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ID_DOKTER, dokter.getId());
         contentValues.put(ID_PERTEMUAN, pertemuan.getId());
+        contentValues.put(PASIEN, pertemuan.getPasien());
+        contentValues.put(ID_DOKTER, pertemuan.getIdDokter());
         contentValues.put(KELUHAN, pertemuan.getKeluhan());
         contentValues.put(TANGGAL, pertemuan.getTanggal());
         contentValues.put(WAKTU, pertemuan.getWaktu());
         contentValues.put(DELETED1, getStringFromDate(pertemuan.getDeleted1()));
 
-        sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
         sqLiteDatabase.insert(TABLE_NAME1, null, contentValues);
     }
 
@@ -155,23 +163,52 @@ public class SQLiteManager extends SQLiteOpenHelper
     {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME, null))
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME1, null))
         {
             if(result.getCount() != 0)
             {
                 while (result.moveToNext())
                 {
                     int idPertemuan = result.getInt(1);
-                    String keluhan = result.getString(2);
-                    String tanggal = result.getString(3);
-                    String waktu = result.getString(4);
-                    String stringDeleted = result.getString(5);
+                    String pasien = result.getString(2);
+                    int idDokter = result.getInt(3);
+                    String keluhan = result.getString(4);
+                    String tanggal = result.getString(5);
+                    String waktu = result.getString(6);
+                    String stringDeleted = result.getString(7);
                     Date deleted1= getDateFromString(stringDeleted);
-                    Pertemuan pertemuan= new Pertemuan(idPertemuan,keluhan,tanggal,waktu, deleted1);
+                    Pertemuan pertemuan= new Pertemuan(idPertemuan, pasien, idDokter,keluhan,tanggal,waktu, deleted1);
                     Pertemuan.pertemuanArrayList.add(pertemuan);
                 }
             }
         }
+    }
+    public ArrayList<Dokter> readCourses() {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        // on below line we are creating a new array list.
+        ArrayList<Dokter> courseModalArrayList = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (cursorCourses.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                courseModalArrayList.add(new Dokter(cursorCourses.getInt(1),
+                        cursorCourses.getString(2),
+                        cursorCourses.getString(3),
+                        cursorCourses.getString(4)));
+            } while (cursorCourses.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorCourses.close();
+        return courseModalArrayList;
     }
 
     public void updateDokterInDB(Dokter dokter)

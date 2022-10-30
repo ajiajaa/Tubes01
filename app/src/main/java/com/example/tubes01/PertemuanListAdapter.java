@@ -94,8 +94,7 @@ public class PertemuanListAdapter extends BaseAdapter {
         public void onClick(View view) {
             if(view== binding.ivTelepon){
                 Context context = view.getContext();
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + selectedDokter.getNoHp()));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", selectedDokter.getNoHp(), null));
                 context.startActivity(intent);
             }
         }

@@ -4,24 +4,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_rs"
+    <RelativeLayout
+        android:id="@+id/lay_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RS Cepat Kembali"
-        android:textSize="50dp"
-        android:padding="50dp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/tv_app_desc"
-        android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_rs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RS Cepat Kembali"
+            android:textSize="60dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_toLeftOf="@id/iv_app_logo"/>
+
+        <ImageView
+            android:id="@+id/iv_app_logo"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/ic_heal2"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        android:layout_below="@+id/tv_rs"
+        android:layout_below="@+id/lay_logo"
         android:layout_above="@+id/lay_But_buat_pert"
-        android:textSize="40dp"/>
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_list_item_redish"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/tv_app_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Selamat datang ! Aplikasi ini dibuat oleh kami, pihak Rumah Sakit Cepat Kembali agar  membantu anda sebagai pasien untuk membuat janji temu dengan dokter-dokter kami yang anda daftarkan !"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/lay_But_buat_pert"
@@ -34,9 +70,10 @@
             android:id="@+id/btn_buat_pertemuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buat Pertemuan"
             android:layout_centerInParent="true"
-            android:textSize="20dp"/>
+            android:text="Buat Pertemuan"
+            android:textSize="20dp"
+            android:backgroundTint="@color/RedIsh"/>
 
     </RelativeLayout>
 

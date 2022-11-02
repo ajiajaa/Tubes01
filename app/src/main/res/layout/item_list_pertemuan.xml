@@ -1,79 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@drawable/rounded_list_item_redish">
 
-    <TextView
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:text="Pasien :"
-        android:id="@+id/tv_pasien"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_pasien_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_pasien"
-        android:layout_toLeftOf="@id/iv_telepon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:text="Pasien :"
+            android:id="@+id/tv_pasien"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:text="Dokter :"
-        android:id="@+id/tv_dokter"
-        android:layout_below="@id/tv_pasien"/>
+        <TextView
+            android:id="@+id/tv_pasien_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_pasien"
+            android:layout_toLeftOf="@id/iv_telepon"/>
 
-    <TextView
-        android:id="@+id/tv_dokter_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_kendala"
-        android:layout_below="@id/tv_pasien"
-        android:layout_toLeftOf="@id/iv_telepon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:text="Dokter :"
+            android:id="@+id/tv_dokter"
+            android:layout_below="@id/tv_pasien"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:text="Kendala :"
-        android:id="@+id/tv_kendala"
-        android:layout_below="@id/tv_dokter"/>
+        <TextView
+            android:id="@+id/tv_dokter_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_kendala"
+            android:layout_below="@id/tv_pasien"
+            android:layout_toLeftOf="@id/iv_telepon"/>
 
-    <TextView
-        android:id="@+id/tv_kendala_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_kendala"
-        android:layout_below="@id/tv_dokter"
-        android:layout_toLeftOf="@id/iv_telepon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:text="Kendala :"
+            android:id="@+id/tv_kendala"
+            android:layout_below="@id/tv_dokter"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:text="Waktu :"
-        android:id="@+id/tv_waktu"
-        android:layout_below="@id/tv_kendala"/>
+        <TextView
+            android:id="@+id/tv_kendala_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_kendala"
+            android:layout_below="@id/tv_dokter"
+            android:layout_toLeftOf="@id/iv_telepon"/>
 
-    <TextView
-        android:id="@+id/tv_waktu_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_waktu"
-        android:layout_below="@id/tv_kendala"
-        android:layout_toLeftOf="@id/iv_telepon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:text="Waktu :"
+            android:id="@+id/tv_waktu"
+            android:layout_below="@id/tv_kendala"/>
 
-    <ImageView
-        android:id="@+id/iv_telepon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_call_button"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/tv_waktu_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_waktu"
+            android:layout_below="@id/tv_kendala"
+            android:layout_toLeftOf="@id/iv_telepon"/>
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_telepon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_call3"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
+

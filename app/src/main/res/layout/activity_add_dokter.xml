@@ -42,14 +42,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_no_hp"
-            android:text="Add"/>
+            android:text="Add"
+            android:backgroundTint="@color/RedIsh"/>
         <Button
             android:id="@+id/btn_add_Delete"
             android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_no_hp"
-            android:text="Delete"/>
+            android:text="Delete"
+            android:backgroundTint="@color/RedIsh"/>
         <Button
             android:id="@+id/btn_telepon"
             android:layout_alignParentLeft="true"
@@ -58,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_add_Delete"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/teal_700"
+            android:backgroundTint="@color/RedIshDark"
             android:text="Call"/>
 
     </RelativeLayout>

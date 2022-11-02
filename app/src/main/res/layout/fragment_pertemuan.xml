@@ -19,7 +19,9 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/judul"
-        android:id="@+id/lv_Pertemuan"/>
+        android:id="@+id/lv_Pertemuan"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add_Pertemuan"
@@ -29,7 +31,8 @@
         android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_add">
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/RedIsh">
         <!--        <TextView-->
         <!--            android:layout_width="wrap_content"-->
         <!--            android:layout_height="wrap_content"-->

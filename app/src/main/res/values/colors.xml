@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#228B22</color>
+    <color name="RedIsh">#FF0048</color>
+    <color name="RedIshLight">#FF5D8A</color>
+    <color name="RedIshLightDarker">#D34E73</color>
+    <color name="RedIshDark">#AF0031</color>
+    <color name="RedIshDarker">#5C001A</color>
 </resources>

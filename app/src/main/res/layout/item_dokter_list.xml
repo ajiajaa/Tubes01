@@ -1,46 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@drawable/rounded_list_item_redish">
 
-    <TextView
-        android:id="@+id/tv_dokter_out"
-        android:hint="dokter name"
-        android:textSize="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:text="Spesialisasi :"
-        android:id="@+id/tv_spesialisasi"
-        android:layout_below="@id/tv_dokter_out"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_spesialisasi_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_spesialisasi"
-        android:layout_below="@id/tv_dokter_out"/>
+        <TextView
+            android:id="@+id/tv_dokter_out"
+            android:hint="dokter name"
+            android:textSize="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:text="no telp :"
-        android:id="@+id/tv_no_hp"
-        android:layout_below="@id/tv_spesialisasi"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:text="Spesialisasi :"
+            android:id="@+id/tv_spesialisasi"
+            android:layout_below="@id/tv_dokter_out"/>
 
-    <TextView
-        android:id="@+id/tv_no_hp_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_no_hp"
-        android:layout_below="@id/tv_spesialisasi"/>
+        <TextView
+            android:id="@+id/tv_spesialisasi_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_spesialisasi"
+            android:layout_below="@id/tv_dokter_out"/>
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="100dp"
+            android:text="no telp :"
+            android:id="@+id/tv_no_hp"
+            android:layout_below="@id/tv_spesialisasi"/>
+
+        <TextView
+            android:id="@+id/tv_no_hp_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_no_hp"
+            android:layout_below="@id/tv_spesialisasi"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

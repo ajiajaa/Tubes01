@@ -46,6 +46,12 @@ public class PertemuanListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void update(List<Pertemuan> arrayAdapter, List<Pertemuan> listOfObject){
+        arrayAdapter.clear();
+        for (Pertemuan object : listOfObject){
+            arrayAdapter.add(object);
+        }
+    }
     @Override
     public int getCount() {
         return pertemuanList.size();
@@ -79,14 +85,31 @@ public class PertemuanListAdapter extends BaseAdapter {
 
     private class ViewHolder implements View.OnClickListener{
         Dokter selectedDokter;
+
         public  void updateView(Pertemuan pertemuan){
-            selectedDokter= dokter.get(pertemuan.getIdDokter());
-            System.out.println("nama pasien"+pertemuan.getPasien());
-            binding.tvPasienOut.setText(pertemuan.getPasien());
-            binding.tvDokterOut.setText(selectedDokter.getNama());
-            binding.tvKendalaOut.setText(pertemuan.getKeluhan());
-            binding.tvWaktuOut.setText(pertemuan.getTanggal()+" ("+pertemuan.getWaktu()+")");
-            binding.ivTelepon.setOnClickListener(this);
+            for (int i= 0; i<dokter.size(); i++){
+                if(dokter.get(i).getId()== pertemuan.getIdDokter()){
+                    selectedDokter= dokter.get(i);
+                }
+            }
+            if(selectedDokter!= null){
+                System.out.println("nama pasien"+pertemuan.getPasien());
+                binding.tvPasienOut.setText(pertemuan.getPasien());
+                binding.tvDokterOut.setText(selectedDokter.getNama());
+                binding.tvKendalaOut.setText(pertemuan.getKeluhan());
+                binding.tvWaktuOut.setText(pertemuan.getTanggal()+" ("+pertemuan.getWaktu()+")");
+                binding.ivTelepon.setOnClickListener(this);
+                System.out.println("list pertemuan di adapter :"+pertemuanList.size());
+            }else{
+                System.out.println("nama pasien"+pertemuan.getPasien());
+                binding.tvPasienOut.setText(pertemuan.getPasien());
+                binding.tvDokterOut.setText("-");
+                binding.tvKendalaOut.setText(pertemuan.getKeluhan());
+                binding.tvWaktuOut.setText(pertemuan.getTanggal()+" ("+pertemuan.getWaktu()+")");
+                binding.ivTelepon.setOnClickListener(this);
+                Toast.makeText(activity.getApplicationContext(), "Data Dokter tidak ter-load. Silahkan buka kembali aplikasi dan buka halaman Dokter terlebih dahulu", Toast.LENGTH_SHORT).show();
+            }
+
 
         }
 

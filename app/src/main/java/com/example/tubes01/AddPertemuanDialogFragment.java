@@ -38,6 +38,8 @@ public class AddPertemuanDialogFragment extends DialogFragment implements DatePi
     int hour = 0;
     int minute = 0;
     DokterListAdapter adapter;
+    static Pertemuan selectedPertemuan;
+    static boolean isSelected;
     public static AddPertemuanDialogFragment newInstance(){
 
         AddPertemuanDialogFragment fragment = new AddPertemuanDialogFragment();
@@ -71,8 +73,44 @@ public class AddPertemuanDialogFragment extends DialogFragment implements DatePi
                 R.layout.item_dokter_list, dokter1);
         spinner.setAdapter(adapter);
         this.binding.btnAddPertemuan.setOnClickListener(this);
+        isSelected= getArguments().getBoolean("isSelected");
+        System.out.println("boolean sebelum di cek"+isSelected);
 
+        checkForEditDokter();
         return binding.getRoot();
+    }
+    private void checkForEditDokter()
+    {
+        Pertemuan selectedPertemuan;
+//        Intent previousIntent = getIntent();
+//        int passedNoteID = previousIntent.getIntExtra(Dokter.DOKTER_EDIT_EXTRA, -1);
+        int value= getArguments().getInt(Pertemuan.PERTEMUAN_EDIT_EXTRA);
+        isSelected= getArguments().getBoolean("isSelected");
+        selectedPertemuan=Pertemuan.getPertemuanForID(value);
+        System.out.println("selected pertemuan diterima"+selectedPertemuan);
+        System.out.println("boolean pas di cek"+isSelected);
+
+        if (selectedPertemuan != null && isSelected)
+        {
+            this.binding.tvNama.setText(selectedPertemuan.getPasien());
+            this.binding.tvDokter.setText(Dokter.getDokterForID(selectedPertemuan.getIdDokter()).getNama());
+            this.binding.etKeluhan.setText(selectedPertemuan.getKeluhan());
+            this.spinner.setSelection(selectedPertemuan.getIdDokter());
+            this.binding.tvTanggalOut.setText(selectedPertemuan.getTanggal());
+            this.binding.tvWaktuOut.setText((selectedPertemuan.getWaktu()));
+            this.binding.tvNama.setVisibility(View.INVISIBLE);
+            this.binding.spinner.setVisibility(View.INVISIBLE);
+            this.binding.tvDokter.setVisibility(View.INVISIBLE);
+            this.binding.tvKeluhan.setVisibility(View.INVISIBLE);
+            this.binding.etNama.setVisibility(View.INVISIBLE);
+            this.binding.etKeluhan.setVisibility(View.INVISIBLE);
+            this.binding.btnAddPertemuan.setText("UBAH JANJI PERTEMUAN");
+        }
+        else
+        {
+//            this.binding.btnAddDelete.setVisibility(View.INVISIBLE);
+
+        }
     }
     @Override
     public void onResume()
@@ -132,18 +170,30 @@ public class AddPertemuanDialogFragment extends DialogFragment implements DatePi
         }
     }
     public void savePertemuan(){
-        Dokter idDokter= (Dokter) spinner.getSelectedItem();
-        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this.getActivity());
-        String nama = String.valueOf(this.binding.etNama.getText());
-        int dokter = Integer.valueOf(idDokter.getId());
-        String keluhan = String.valueOf(this.binding.etKeluhan.getText());
-        String tanggal = String.valueOf(this.binding.tvTanggalOut.getText());
-        String waktu = String.valueOf(this.binding.tvWaktuOut.getText());
+        System.out.println("selected pertemuan saat editsave "+selectedPertemuan);
+        if(selectedPertemuan == null)
+        {
+            Dokter idDokter= (Dokter) spinner.getSelectedItem();
+            SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this.getActivity());
+            String nama = String.valueOf(this.binding.etNama.getText());
+            int dokter = Integer.valueOf(idDokter.getId());
+            String keluhan = String.valueOf(this.binding.etKeluhan.getText());
+            String tanggal = String.valueOf(this.binding.tvTanggalOut.getText());
+            String waktu = String.valueOf(this.binding.tvWaktuOut.getText());
 
-        int id = Pertemuan.pertemuanArrayList.size();
-        Pertemuan newPertemuan = new Pertemuan(id, nama, dokter, keluhan, tanggal, waktu);
-        Pertemuan.pertemuanArrayList.add(newPertemuan);
-        sqLiteManager.addPertemuanToDatabase(newPertemuan);
+            int id = Pertemuan.pertemuanArrayList.size();
+            Pertemuan newPertemuan = new Pertemuan(id, nama, dokter, keluhan, tanggal, waktu);
+            Pertemuan.pertemuanArrayList.add(newPertemuan);
+            sqLiteManager.addPertemuanToDatabase(newPertemuan);
+        }
+        else
+        {
+            String tanggal= String.valueOf(this.binding.tvTanggalOut.getText());
+            String waktu= String.valueOf(this.binding.tvWaktuOut.getText());
+            selectedPertemuan.setTanggal(tanggal);
+            selectedPertemuan.setWaktu(waktu);
+        }
+        getActivity().getFragmentManager().popBackStack();
     }
 
     @Override

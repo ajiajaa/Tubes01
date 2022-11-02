@@ -189,7 +189,7 @@ public class SQLiteManager extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
 
         // on below line we are creating a cursor with query to read data from database.
-        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM Dokter WHERE deleted IS NULL", null);
 
         // on below line we are creating a new array list.
         ArrayList<Dokter> courseModalArrayList = new ArrayList<>();
@@ -227,7 +227,7 @@ public class SQLiteManager extends SQLiteOpenHelper
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ID_DOKTER, pertemuan.idPertemuan);
+        contentValues.put(ID_PERTEMUAN, pertemuan.idPertemuan);
         contentValues.put(KELUHAN, pertemuan.keluhan);
         contentValues.put(TANGGAL, pertemuan.tanggal);
         contentValues.put(WAKTU, pertemuan.waktu);

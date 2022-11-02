@@ -31,7 +31,7 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = DialogFragmentAddDokterBinding.inflate(inflater,container,false);
         this.binding.btnAddDokter.setOnClickListener(this);
-        this.binding.btnAddDelete.setOnClickListener(this);
+//        this.binding.btnAddDelete.setOnClickListener(this);
         if (getDialog() != null && getDialog().getWindow() != null) {
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -78,8 +78,6 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
                 saveDokter();
                 this.dismiss();
             }
-        }else if(view== this.binding.btnAddDelete){
-            deleteDokter();
         }
     }
     private void checkForEditDokter()
@@ -95,10 +93,6 @@ public class AddDokterDialogFragment extends DialogFragment implements View.OnCl
             this.binding.etDokterName.setText(selectedDokter.getNama());
             this.binding.etSpesialisasi.setText(selectedDokter.getSpesialis());
             this.binding.etNoHp.setText(selectedDokter.getNoHp());
-        }
-        else
-        {
-            this.binding.btnAddDelete.setVisibility(View.INVISIBLE);
         }
     }
 

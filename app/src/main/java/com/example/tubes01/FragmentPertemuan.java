@@ -2,12 +2,14 @@ package com.example.tubes01;
 
 import static com.example.tubes01.SQLiteManager.TABLE_NAME;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,10 +37,9 @@ public class FragmentPertemuan extends Fragment implements View.OnClickListener 
         this.binding = FragmentPertemuanBinding.inflate(inflater,container,false);
         this.adapter = new PertemuanListAdapter(getActivity(), Pertemuan.nonDeletedPertemuan(), Dokter.nonDeletedNotes());
         binding.lvPertemuan.setAdapter(adapter);
-        loadFromDBToMemory();
         SQLiteManager db= new SQLiteManager(this.getContext());
         dokter= db.readCourses();
-
+        loadFromDBToMemory();
         binding.btnAddPertemuan.setOnClickListener(this);
         this.getParentFragmentManager().setFragmentResultListener(
                 "PertemuanInfo", this, new FragmentResultListener() {
@@ -56,6 +57,7 @@ public class FragmentPertemuan extends Fragment implements View.OnClickListener 
                     }
 
                 });
+        setOnClickListener();
         return binding.getRoot();
     }
 
@@ -64,18 +66,27 @@ public class FragmentPertemuan extends Fragment implements View.OnClickListener 
         SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(getActivity());
         sqLiteManager.populatePertemuanListArray();
     }
-
+    @Override
     public void onResume()
     {
         super.onResume();
-        this.adapter = new PertemuanListAdapter(getActivity(), Pertemuan.nonDeletedPertemuan(), dokter);
+//        adapter.notifyDataSetChanged();
+        getParentFragmentManager().beginTransaction().attach(this).commit ();
+        this.adapter = new PertemuanListAdapter(getActivity(), Pertemuan.nonDeletedPertemuan(), Dokter.nonDeletedNotes());
         binding.lvPertemuan.setAdapter(adapter);
+
     }
 
     @Override
     public void onClick(View view) {
         if(view==binding.btnAddPertemuan){
-            showDialog();
+//            Bundle result= new Bundle();
+//            result.putInt(Pertemuan.PERTEMUAN_EDIT_EXTRA, -1);
+//            result.putBoolean("isSelected",false);
+//            getParentFragmentManager().setFragmentResult("idPertemuan", result);
+//            showDialog();
+            Intent newPertemuanIntent = new Intent(getActivity(), AddPertemuan.class);
+            startActivity(newPertemuanIntent);
         }
     }
 
@@ -83,6 +94,29 @@ public class FragmentPertemuan extends Fragment implements View.OnClickListener 
         FragmentManager fm = getActivity().getSupportFragmentManager();
         AddPertemuanDialogFragment addPertFrag = AddPertemuanDialogFragment.newInstance();
         addPertFrag.show(fm, "fragment_add_pertemuan");
+    }
+    private void setOnClickListener() {
+        this.binding.lvPertemuan.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+            {
+//                Bundle result= new Bundle();
+//                Pertemuan selectedPertemuan = (Pertemuan) binding.lvPertemuan.getItemAtPosition(position);
+//                result.putInt(Pertemuan.PERTEMUAN_EDIT_EXTRA, selectedPertemuan.getId());
+//                result.putBoolean("isSelected", true);
+//                getParentFragmentManager().setFragmentResult("idPertemuan", result);
+//                showDialog();
+//                result.putInt(Dokter.DOKTER_EDIT_EXTRA, -1);
+
+//                getParentFragmentManager().setFragmentResult("idDokter", result);
+                Pertemuan selectedPertemuan = (Pertemuan) binding.lvPertemuan.getItemAtPosition(position);
+                Intent editPertemuanIntent = new Intent(getActivity(), AddPertemuan.class);
+                editPertemuanIntent.putExtra(Pertemuan.PERTEMUAN_EDIT_EXTRA, selectedPertemuan.getId());
+                startActivity(editPertemuanIntent);
+
+            }
+        });
     }
 
 }

@@ -37,7 +37,7 @@ public class Pertemuan {
         this.deleted1= null;
     }
 
-    public Pertemuan getPertemuanForID(int passedPertemuanID)
+    public static Pertemuan getPertemuanForID(int passedPertemuanID)
     {
         for (Pertemuan pertemuan : pertemuanArrayList)
         {
@@ -46,6 +46,10 @@ public class Pertemuan {
         }
 
         return null;
+    }
+    public void deletemyself(int passedPertemuanID)
+    {
+        pertemuanArrayList.remove(passedPertemuanID);
     }
     public static ArrayList<Pertemuan> nonDeletedPertemuan()
     {

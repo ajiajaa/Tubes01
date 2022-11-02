@@ -31,9 +31,11 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = FragmentDokterBinding.inflate(inflater,container,false);
-        this.adapter = new DokterListAdapter(getActivity(), Dokter.nonDeletedNotes());
-        binding.lvDokter.setAdapter(adapter);
         loadFromDBToMemory();
+        this.adapter = new DokterListAdapter(getActivity(), Dokter.nonDeletedNotes());
+        PertemuanListAdapter adapter1 = new PertemuanListAdapter(getActivity(), Pertemuan.nonDeletedPertemuan(), Dokter.nonDeletedNotes());
+        binding.lvDokter.setAdapter(adapter);
+        adapter1.notifyDataSetChanged();
         binding.btnAddDokter.setOnClickListener(this);
         setOnClickListener();
 
@@ -74,7 +76,7 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
         });
     }
 
-    private void loadFromDBToMemory() {
+    public void loadFromDBToMemory() {
         SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(getActivity());
         sqLiteManager.populateDokterListArray();
     }
@@ -85,7 +87,6 @@ public class FragmentDokter extends Fragment implements View.OnClickListener{
         super.onResume();
         this.adapter = new DokterListAdapter(getActivity(), Dokter.nonDeletedNotes());
         binding.lvDokter.setAdapter(adapter);
-        System.out.println("adapter load lagi1");
 
     }
     @Override

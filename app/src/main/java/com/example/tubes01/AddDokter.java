@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.tubes01.databinding.ActivityAddDokterBinding;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AddDokter extends AppCompatActivity implements View.OnClickListener{
@@ -22,9 +23,7 @@ public class AddDokter extends AppCompatActivity implements View.OnClickListener
         View view = binding.getRoot();
         setContentView(view);
         checkForEditDokter();
-
         this.binding.btnAddDokter.setOnClickListener(this);
-        this.binding.btnAddDelete.setOnClickListener(this);
         this.binding.btnTelepon.setOnClickListener(this);
     }
 
@@ -42,7 +41,7 @@ public class AddDokter extends AppCompatActivity implements View.OnClickListener
         }
         else
         {
-            this.binding.btnAddDelete.setVisibility(View.INVISIBLE);
+//            this.binding.btnAddDelete.setVisibility(View.INVISIBLE);
             this.binding.btnTelepon.setVisibility(View.INVISIBLE);
         }
     }
@@ -56,6 +55,7 @@ public class AddDokter extends AppCompatActivity implements View.OnClickListener
         if(selectedDokter == null)
         {
             int id = Dokter.dokterArrayList.size();
+            System.out.println("id dokter "+id);
             Dokter newDokter = new Dokter(id, nama, spesialisasi,noHP);
             Dokter.dokterArrayList.add(newDokter);
             sqLiteManager.addDokterToDatabase(newDokter);
@@ -71,21 +71,27 @@ public class AddDokter extends AppCompatActivity implements View.OnClickListener
         finish();
     }
 
-    public void deleteDokter()
-    {
-        selectedDokter.setDeleted(new Date());
-        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
-        sqLiteManager.updateDokterInDB(selectedDokter);
-        finish();
-    }
+//    public void deleteDokter()
+//    {
+//        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(this);
+//        selectedDokter.setDeleted(new Date());
+//        int temp= selectedDokter.getId();
+//        for(int i= 0; i<Pertemuan.nonDeletedPertemuan().size(); i++){
+//            if(temp== Pertemuan.nonDeletedPertemuan().get(i).getIdDokter()){
+//                Pertemuan.nonDeletedPertemuan().get(i).setDeleted1(new Date());
+//                System.out.println("Dokter "+ Pertemuan.nonDeletedPertemuan().get(i).idDokter+" terhapus");
+//                System.out.println("pertemuan "+ Pertemuan.nonDeletedPertemuan().get(i).idPertemuan+" terhapus");
+//                sqLiteManager.updatePertemuanInDB(Pertemuan.getPertemuanForID(i));
+//            }
+//        }
+//        sqLiteManager.updateDokterInDB(selectedDokter);
+//        finish();
+//    }
 
     @Override
     public void onClick(View view) {
         if(view== this.binding.btnAddDokter){
             saveDokter();
-        }
-        if(view== this.binding.btnAddDelete){
-            deleteDokter();
         }
         if(view== this.binding.btnTelepon){
             Intent intent = new Intent(Intent.ACTION_DIAL);

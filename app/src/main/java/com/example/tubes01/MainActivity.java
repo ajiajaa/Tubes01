@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         fragPertemuan = FragmentPertemuan.newInstance("fragment pertemuan");
         fragDokter = FragmentDokter.newInstance("fragment dokter");
 
-
         this.toolbar = binding.toolbar;
         this.dl = binding.drawerLayout;
         this.setSupportActionBar(toolbar);
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
     public void changePage(int page){
         FragmentTransaction ft = this.fm.beginTransaction();
         if(page==1){
@@ -67,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.add(R.id.fragment_container,this.fragHome);
             }
             if(this.fragDokter.isAdded() || this.fragPertemuan.isAdded()){
-                ft.hide(this.fragPertemuan);
                 ft.hide(this.fragDokter);
+            }
+            if(this.fragPertemuan.isAdded()){
+                ft.hide(this.fragPertemuan);
             }
         }else if(page==2){
             System.out.println("Change p2");
@@ -77,20 +77,25 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 ft.add(R.id.fragment_container,this.fragDokter);
             }
-            if(this.fragHome.isAdded() || this.fragPertemuan.isAdded()){
-                ft.hide(this.fragHome);
+            if(this.fragPertemuan.isAdded()){
                 ft.hide(this.fragPertemuan);
+            }
+            if(this.fragHome.isAdded()){
+                ft.hide(this.fragHome);
             }
         }else if(page==3){
             System.out.println("Change p3");
             if(this.fragPertemuan.isAdded()){
                 ft.show(this.fragPertemuan);
+
             }else{
                 ft.add(R.id.fragment_container,this.fragPertemuan);
             }
-            if(this.fragDokter.isAdded() || this.fragHome.isAdded()){
-                ft.hide(this.fragHome);
+            if(this.fragDokter.isAdded()){
                 ft.hide(this.fragDokter);
+            }
+            if(this.fragHome.isAdded()){
+                ft.hide(this.fragHome);
             }
         }
         ft.commit();
